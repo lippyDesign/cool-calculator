@@ -1,0 +1,47 @@
+.calculatorBox {
+    width: 30%;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px;
+    border-radius: 10px;
+    padding: 10px;
+}
+@media(max-width: 1050px) {
+    .calculatorBox {
+        width: 50%;
+    }
+}
+@media(max-width: 750px) {
+    .calculatorBox {
+        width: 95%;
+    }
+}
+.numberPad, .topWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.inputSection, .outputSection {
+    height: 50px;
+    width: 93%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+}
+.outputSection {
+    border: none;
+}
+.numberButton, .actionButton, .clearButton {
+    background: pink;
+    border-radius: 5px;
+    width: 30%;
+    height: 50px;
+    margin: 5px;
+    font-size: 20px;
+}
+.actionButton {
+    background: cadetblue;
+}
+.clearButton {
+    background: #FFB45C;
+}
