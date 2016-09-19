@@ -36,6 +36,21 @@ $(document).ready(function(){
             var result = getResult()
             $('.outputP').append('= ').append(result)
         }
+        // if back arrow is pressed
+        if ($(this).attr("value") == '<-') {
+            // remove the back arrow
+            var currentInputValue = $('.inputP').text().slice(0,-2)
+            // trim all spaces
+            currentInputValue = currentInputValue.trim()
+            // remove last character
+            modifiedInputValue = currentInputValue.slice(0, -1)
+            // trim again
+            modifiedInputValue.trim()
+            // empty the input paragraph
+            $('.inputP').empty()
+            // append the modified value (with the removed vast element) to the input paragraph
+            $('.inputP').append(modifiedInputValue)
+        }
     })
     // the function that evaluates what is in the input paragraph
     function getResult() {
