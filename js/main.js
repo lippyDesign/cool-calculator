@@ -1,6 +1,9 @@
 $(document).ready(function(){
     // Make action and clear buttons
     var buttons = [
+        {name: '<-', className: 'clearButton'},
+        {name: 'clear', className: 'clearButton'},
+        {name: ' =', className: 'clearButton'},
         {name: ' / ', className: 'actionButton'},
         {name: ' % ', className: 'actionButton'},
         {name: ' * ', className: 'actionButton'},
@@ -8,10 +11,7 @@ $(document).ready(function(){
         {name: ' - ', className: 'actionButton'},
         {name: '(', className: 'actionButton'},
         {name: ')', className: 'actionButton'},
-        {name: '.', className: 'actionButton'},
-        {name: ' =', className: 'clearButton'},
-        {name: '<-', className: 'clearButton'},
-        {name: 'clear', className: 'clearButton'}
+        {name: '.', className: 'actionButton'}
         ]
     // Add number buttons to the array of buttons
     for(var i = 0; i < 10; i++) {
@@ -59,6 +59,31 @@ $(document).ready(function(){
         // remove the equal sign (last element) from the string
         var inputValue = $inputP.slice(0,-1)
         // evaluate and return the string using MathJs library
-        return math.eval(inputValue)
+        // try to evaluate
+        try {
+            // remove textRed if it is there
+            $(".outputP").removeClass("textRed");
+            // empty output paragraph if something is there
+            $('.outputP').empty()
+            // if user made no errors in the format return evaluated value
+            return math.eval(inputValue)
+        }
+        // if there were errors, display the error message
+        catch(err) {
+            $(".outputP").addClass("textRed");
+            return 'your expression was not valid'
+        }
     }
+    // include keys 0 through 9
+    $(document).keydown(function(evt){
+        // get value of the key that's been pressed
+        var keyValue = (String.fromCharCode(evt.keyCode))
+        // initiate acceptable keys array
+        var acceptableKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        // if pressed key is acceptable (i.e 0 through 9)
+        if (acceptableKeys.indexOf(keyValue) !== -1) {
+            // add the acceptable key to the input paragraph
+            $('.inputP').append(keyValue)
+        }
+    });
 });
